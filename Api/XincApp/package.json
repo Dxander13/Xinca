@@ -1,16 +1,28 @@
 {
-  "name": "xincapp",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.1"
-  }
+    "name": "control-ganadero",
+    "version": "1.0.0",
+    "description": "\"Control Ganadero\"",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cristhofer5748/control-ganadero.git"
+    },
+    "author": "Cristhofer Rodriguez",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cristhofer5748/control-ganadero/issues"
+    },
+    "homepage": "https://github.com/cristhofer5748/control-ganadero#readme",
+    "dependencies": {
+        "csv-parser": "^3.0.0",
+        "express": "^4.17.1",
+        "log4js": "^6.3.0",
+        "mysql": "^2.18.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.12"
+    }
 }
