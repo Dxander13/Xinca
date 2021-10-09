@@ -26,8 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/login', routslogin);
-app.use('/insert', routsInsert);
-app.use('/information', routsConsultas);
+app.use('/insertar', routsInsert);
+app.use('/informacion', routsConsultas);
 
 app.listen(app.get('port'), () => {
     conection.conection();

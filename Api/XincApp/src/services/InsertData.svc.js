@@ -2,14 +2,14 @@ const log4js = require("log4js");
 const query = require("../dao/querys.insert.js");
 
 
-function insertAnimal(objectRegister) {
+function insertPalabraUsuario(objectRegister) {
     return new Promise(async(resolve, reject) => {
         var mr;
-        var result = await query.registerAnimal(objectRegister);
+        var result = await query.registroPalabra(objectRegister);
 
         try {
             if (result) {
-                mr = { state: 200, data: [{ info: "Animal Registrado", idAnimal: result }], message: "SUCCES" };;
+                mr = { state: 200, data: [{ info: "Palabra registrada", idPalabraRegistrada: result }], message: "SUCCES" };;
             } else {
                 mr = {
                     state: -1,
@@ -147,4 +147,4 @@ function insertHealthControl(objectHealth) {
 }
 
 
-module.exports = { insertAnimal, insertUser, insertMilk, insertNatality, insertInsemination, insertHealthControl };
+module.exports = { insertPalabraUsuario, insertUser, insertMilk, insertNatality, insertInsemination, insertHealthControl };

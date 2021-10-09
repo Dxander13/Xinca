@@ -1,11 +1,11 @@
 const { conector } = require("../settings/mysql.conector.js");
 
 
-const registerAnimal = (animal) => {
+const registroPalabra = (registroPalabra) => {
 
-    const sqlInsertAnimalRegister = `INSERT INTO controlganadero.registroanimal SET ?`;
+    const sqlInsertRegistroPalabra = `INSERT INTO xincadb.registro SET ?`;
     return new Promise((resolve, reject) => {
-        conector.query(sqlInsertAnimalRegister, animal, (erro, resul) => {
+        conector.query(sqlInsertRegistroPalabra, registroPalabra, (erro, resul) => {
             if (erro) reject(erro)
             else resolve(resul.insertId)
         });
@@ -13,21 +13,21 @@ const registerAnimal = (animal) => {
 };
 
 const registerUser = (user) => {
-    let idGanadero;
-    const sqlInsertGanadero = `INSERT INTO controlganadero.ganaderos
-    (nombre, apellido, fechaNacimiento, sexo)
-    VALUES("${user.nombre}", "${user.apellido}", "${user.fechaNacimiento}", "${user.sexo}");`;
+    let IdUsuario;
+ console.log('entro a la query')
+    const sqlInsertUserRegister = `INSERT INTO xincadb.usuario
+            (NombreUsuario, Contraseña)
+            VALUES("${user.nombreUsuario}", "${user.contraseña}");`;   
 
     return new Promise((resolve, reject) => {
-        conector.query(sqlInsertGanadero, (err, result) => {
-
-            idGanadero = result.insertId
-            const sqlInsertUserRegister = `INSERT INTO controlganadero.usuarios
-    (idPais, idGanadero, correo, contraseña, numeroTelefono, tieneFinca, nombreFinca)
-    VALUES(${user.pais}, ${idGanadero}, "${user.correo}", "${user.contrasena}", ${user.telefono}, 
-    ${user.tieneFinca}, "${user.nombreFinca}");`;
-            conector.query(sqlInsertUserRegister, (err, resul) => {
-                console.log(resul.insertId)
+        conector.query(sqlInsertUserRegister, (err, result) => {
+            console.log(result)
+            IdUsuario = result.insertId
+            const sqlInsertPerfil = `INSERT INTO xincadb.perfil
+    (Nickname, Experiencia, Celular, Correo, IdCategoria, IdUsuario)
+    VALUES("${user.nickname}", ${user.experiencia}, ${user.celular}, "${user.correo}", ${user.IdCategoria}, ${IdUsuario});`;
+            conector.query(sqlInsertPerfil, (err, resul) => {
+               
                 if (err) reject(err);
                 else resolve(resul.insertId)
             });
@@ -35,6 +35,7 @@ const registerUser = (user) => {
     })
 
 };
+
 const registerMilk = (milk) => {
 
     const sqlInsertMilkRegister = `INSERT INTO controlganadero.producciondiaria SET ?`;
@@ -87,7 +88,7 @@ const registerhealthcontrol = (health) => {
 };
 
 module.exports = {
-    registerAnimal,
+    registroPalabra,
     registerUser,
     registerMilk,
     registerNatality,

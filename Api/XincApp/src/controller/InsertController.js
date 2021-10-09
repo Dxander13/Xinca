@@ -2,10 +2,10 @@ const express = require('express')
 const insertData = require('../services/InsertData.svc.js')
 const routes = express.Router()
 
-routes.post('/animal', (req, res) => {
-    let animal = req.body;
-    console.log(animal)
-    insertData.insertAnimal(animal).then(function(result) {
+routes.post('/registro/palabra-usuario', (req, res) => {
+    let registroPalabra = req.body;
+    console.log(registroPalabra)
+    insertData.insertPalabraUsuario(registroPalabra).then(function(result) {
         res.json(result)
     }).catch(error => {
         console.log(error);
@@ -13,7 +13,7 @@ routes.post('/animal', (req, res) => {
     })
 })
 
-routes.post('/user', (req, res) => {
+routes.post('/usuario', (req, res) => {
     let user = req.body;
     console.log(user)
     insertData.insertUser(user).then(result => {
