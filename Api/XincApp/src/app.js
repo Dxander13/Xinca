@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 var log4js = require("log4js");
+const cors = require('cors');
 const routslogin = require('./controller/login.routes')
 const routsInsert = require('./controller/InsertController.js')
 const routsConsultas = require('./controller/consultasController.js')
@@ -15,6 +16,7 @@ log4js.configure({
         }
     },
     categories: {
+        
         default: {
             appenders: ["console"],
             level: "info"
@@ -24,6 +26,8 @@ log4js.configure({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+
 
 app.use('/login', routslogin);
 app.use('/insertar', routsInsert);

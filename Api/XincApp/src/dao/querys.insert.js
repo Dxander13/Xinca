@@ -1,3 +1,4 @@
+const { query } = require("express");
 const { conector } = require("../settings/mysql.conector.js");
 
 
@@ -16,18 +17,19 @@ const registerUser = (user) => {
     let IdUsuario;
  console.log('entro a la query')
     const sqlInsertUserRegister = `INSERT INTO xincadb.usuario
-            (NombreUsuario, Contraseña)
-            VALUES("${user.nombreUsuario}", "${user.contraseña}");`;   
+            (NombreUsuario, Contrasena)
+            VALUES("${user.nombreUsuario}", "${user.contrasena}");`;   
 
     return new Promise((resolve, reject) => {
         conector.query(sqlInsertUserRegister, (err, result) => {
             console.log(result)
             IdUsuario = result.insertId
             const sqlInsertPerfil = `INSERT INTO xincadb.perfil
-    (Nickname, Experiencia, Celular, Correo, IdCategoria, IdUsuario)
-    VALUES("${user.nickname}", ${user.experiencia}, ${user.celular}, "${user.correo}", ${user.IdCategoria}, ${IdUsuario});`;
+    (Nickname, Contrasena, Experiencia, Celular, Correo, IdCategoria, IdUsuario)
+    VALUES("${user.nickname}", "${user.contrasena}", ${user.experiencia}, ${user.celular}, "${user.correo}", ${user.IdCategoria}, ${IdUsuario});`;
             conector.query(sqlInsertPerfil, (err, resul) => {
-               
+               console.log(err)
+               console.log(resul)
                 if (err) reject(err);
                 else resolve(resul.insertId)
             });
@@ -36,62 +38,21 @@ const registerUser = (user) => {
 
 };
 
-const registerMilk = (milk) => {
-
-    const sqlInsertMilkRegister = `INSERT INTO controlganadero.producciondiaria SET ?`;
-    return new Promise((resolve, reject) => {
-        conector.query(sqlInsertMilkRegister, milk, (err, result) => {
-            if (err) reject(err)
-            else resolve(result.insertId)
-        });
+const actualizarPerfil = (perfilAct) => {
+    const queryUpdatePerfil = 'UPDATE xincadb.perfil SET Nickname= ?, Contrasena= ?, Celular= ?, Correo= ? where IdPerfil= ?;';
+    return new Promise((resolve, reject)=>{
+        conector.query(queryUpdatePerfil,[perfilAct.nickname, perfilAct.contrasena, +perfilAct.celular, perfilAct.correo, +perfilAct.idPerfil],(error,result)=>{
+            console.log(result)
+            console.log(error)
+            if(error) reject(error)
+            else resolve(result)
+        })
     })
-
-};
-
-const registerNatality = (natality) => {
-
-    const sqlInsertNatalityRegister = `INSERT INTO controlganadero.natalidad SET ?;`;
-    return new Promise((resolve, reject) => {
-        conector.query(sqlInsertNatalityRegister, natality, (err, result) => {
-            if (err) reject(err)
-            else resolve(result.insertId)
-        });
-    })
-};
-
-const registerInsemination = (insemination) => {
-
-
-    const sqlInsertInseminationRegister = `INSERT INTO controlganadero.inseminacion
-    SET ?`;
-    return new Promise((resolve, reject) => {
-        conector.query(sqlInsertInseminationRegister, insemination, (err, result) => {
-            if (err) reject(err)
-            else resolve(result.insertId)
-        });
-    })
-
-
-
-};
-
-const registerhealthcontrol = (health) => {
-
-    const sqlInsertHealthRegister = `INSERT INTO controlganadero.controlsalud SET ?`;
-    return new Promise((resolve, reject) => {
-        conector.query(sqlInsertHealthRegister, health, (err, result) => {
-            if (err) reject(err)
-            else resolve(result.insertId)
-        });
-    })
-
-};
+}
 
 module.exports = {
     registroPalabra,
     registerUser,
-    registerMilk,
-    registerNatality,
-    registerInsemination,
-    registerhealthcontrol
+    actualizarPerfil
+   
 };

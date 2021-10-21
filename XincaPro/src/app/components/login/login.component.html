@@ -1,0 +1,27 @@
+
+
+    <section>
+        <div class="form-container">  
+            <img class="avatar">         
+            <h1>BIENVENIDO</h1>
+            
+                <div class="control">                    
+                    <label for="name">Nombre</label>
+                    <i class="fa fa-user"></i>
+                    <input #usuario type="text" placeholder= "Usuario" >
+                </div>
+                <div class="control">
+                    <label for="psw">Contraseña</label>
+                    <input #contrasena type="password" >
+                </div>
+                <span><input type="checkbox">Recuerdame</span><br><br>
+                <div class="control">
+                    <button  class="sesion" (click)="valildatePerfil(usuario.value,contrasena.value)" >Inciar Sesion</button>
+                </div><br>
+                <div class="control">
+                    <a class="btn" href="registro">REGISTRARSE</a>>
+                </div>
+           
+        </div>
+    </section>
+

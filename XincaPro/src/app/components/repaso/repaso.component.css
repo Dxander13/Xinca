@@ -1,0 +1,57 @@
+
+
+.contenedor-leccion{
+    background-image: url("/assets/img/fondoregistro.jpg");       
+    width: 100%;
+    height: 85vh;
+   
+}
+
+.carousel-item{
+    margin-top: 250px;
+    transition-duration: 0s;
+    
+}
+
+
+.card{
+    margin-top: -120px;    
+    height: 40%;    
+    margin-left: 40%;
+    margin-right: 50%;
+    border-radius: 5%;   
+}
+
+.ctn-botones{
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 45%;
+
+}
+
+.btn-respuesta{
+    width: 200px;
+    height: 50px;
+    margin-left: -30px;
+    background: midnightblue;
+    border-radius: 10%;
+    text-align: center;
+    color: mintcream;
+}
+
+.btn-siguiente{
+    width: 200px;
+    height: 50px;
+    margin-left: -30px;
+    background:rgb(17, 189, 17) ;
+    border-radius: 10%;
+    text-align: center;
+    color: mintcream;
+    
+}
+
+p{
+    font-style: oblique;
+    text-align: center;
+}
+

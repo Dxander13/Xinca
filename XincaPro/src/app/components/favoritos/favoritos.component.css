@@ -1,0 +1,30 @@
+
+.contenedor-favorito{
+    background-image: url("/assets/img/fondoregistro.jpg");       
+    width: 100%;
+    height: 85vh;
+   
+}
+
+.card{
+    width: 350px;
+    
+    margin-top: 80px;    
+    margin-left: 20%;
+    margin-right: 10%;
+    border-radius: 10%;
+    box-shadow: 7px 7px 60px midnightblue;
+    
+}
+
+.card-title{
+    text-align: center;
+}
+.p{
+    text-align: center;
+}
+
+h5{
+    color:  mediumblue;
+    font-family: sans-serif;
+}

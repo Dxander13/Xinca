@@ -1,0 +1,35 @@
+.navbar{
+    background: darkblue;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 85px;    
+    font-size: 1.2em;  
+    
+   
+}
+
+.fav{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    margin-left: 25%;
+    color: white;
+    
+}
+
+.configuracion{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    margin-right: 25%;
+    color: white    
+    
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,33 @@
+.navbar{
+    background: darkblue;    
+    width: 100%;
+    height: 85px;    
+    font-size: 18px;  
+     
+}
+
+.inicio {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    margin-left: 5%;
+    color: white;
+}
+
+.leccion-hoy {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.mis-lecciones {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    margin-right: 5%;
+    color: white;
+}

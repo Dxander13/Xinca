@@ -1,0 +1,40 @@
+
+    <section class="contenedor-principal">
+        <img src="/assets/img/fondo.jpeg" alt="">
+        <div class="form-container">
+           
+            <h1>REGISTRO DE USUARIO</h1>
+            <form action="#">
+                <div class="control">                    
+                    <label for="name">Nombre</label>
+                    <i class="fa fa-user"></i>
+                    <input #nombre type="text" placeholder= "Usuario"name="name" id="name">
+                </div>
+                <div class="control">
+                    <label for="correo">Correo</label>
+                    <input #correo type="email"  name="correo" id="correo">
+                </div>
+                <div class="control">
+                    <label for="psw"> Contraseña</label>
+                    <input #password type="password" name="psw" id="psw">
+                </div>
+                <div class="control">
+                    <label for="psw2">Contraseña</label>
+                    <input #password2 type="password" placeholder="repetir contraseña"name="psw2" id="psw2">
+                </div>
+                <div class="control">                    
+                    <label for="celular">Celular</label>
+                    <i class="fa fa-user"></i>
+                    <input #celular type="text" name="celular" id="celular">
+                </div>
+
+                <span style="color: white;"><input type="checkbox">Acepto Politicas y Condiciones de uso</span>
+               
+                <div class="control">
+                    <input (click)="Registrar(nombre.value, correo.value, password.value, password2.value,celular.value)" type="button" value="Crear Cuenta">
+                </div>
+                <a class="volver" href="login">Ya poseo una cuenta</a>>
+            </form>
+
+        </div>
+    </section>    

@@ -15,6 +15,9 @@ routes.get('/register/usuario/:idUsuario/palabra/:idPalabra', (req, res) => {
     })
 })
 
+
+
+
 routes.get('/usuario/:idUsuario/palabras-aprendidas', (req, res) => {
     var user_id = req.params['idUsuario']
    
@@ -41,9 +44,9 @@ routes.get('/usuario/:idUsuario/palabras-aprender', (req, res) => {
 
 routes.get('/logeo/:idUsuario/:contrasena', (req, res) => {
     var user_id = req.params['idUsuario']
-    var contraseña = req.params['contrasena']
+    var contrasena = req.params['contrasena']
 
-    consultas.registroLogin(user_id,contraseña).then(result => {
+    consultas.registroLogin(user_id,contrasena).then(result => {
         res.json(result)
     }).catch(error => {
         console.log(error);
@@ -86,6 +89,61 @@ routes.get('/usuario/verificar-categoria/:idCategoria', (req, res) => {
         res.json(error)
     })
 })
+routes.get('/usuarios', (req, res) => {    
+    
+    
+    consultas.getUsuarios().then(result => {
+        res.json(result)
+    }).catch(error => {
+        console.log(error);
+        res.json(error)
+    })
+})
+
+
+
+routes.get('/usuario/:idUsuario/grupo/:idGrupo', (req, res) => {
+    var user_id = req.params['idUsuario']
+    var grupo_id = req.params['idGrupo']
+   
+
+    consultas.registroPalabraAprendidaGrupo(user_id, grupo_id).then(result => {
+        res.json(result)
+    }).catch(error => {
+        console.log(error);
+        res.json(error)
+    })
+})
+
+
+routes.get('/grupo/:idGrupo/palabras', (req, res) => {
+    
+    var grupo_id = req.params['idGrupo']
+   
+
+    consultas.registroPalabrasGrupo( grupo_id).then(result => {
+        res.json(result)
+    }).catch(error => {
+        console.log(error);
+        res.json(error)
+    })
+})
+
+
+
+routes.get('/perfil/:idPerfil', (req, res) => {
+    
+    var perfil_id = req.params['idPerfil']
+   
+
+    consultas.consultarPerfil( perfil_id).then(result => {
+        res.json(result)
+    }).catch(error => {
+        console.log(error);
+        res.json(error)
+    })
+})
+
 
 
 module.exports = routes

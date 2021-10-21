@@ -52,17 +52,18 @@ function insertUser(objectUser) {
     });
 }
 
-function insertMilk(objectMilk) {
+function actualizaPerfil(objectPerfil) {
     return new Promise(async(resolve, reject) => {
         var mr;
-        var result = await query.registerMilk(objectMilk);
+        var result = await query.actualizarPerfil(objectPerfil);
+        console.log
         try {
             if (result) {
-                mr = { state: 200, data: [{ info: "Resgistro de Leche Creado", idProduccionLeche: result }], message: "SUCCES" };
+                mr = { state: 200, data: result, message: "SUCCES" };
             } else {
                 mr = {
                     state: -1,
-                    data: "No se pudo registrar",
+                    data: "No se pudo crear el usurio",
                     messag: "ERROR",
                 };
             }
@@ -76,75 +77,11 @@ function insertMilk(objectMilk) {
     });
 }
 
-function insertNatality(objectNatality) {
-    return new Promise(async(resolve, reject) => {
-        var mr;
-        var result = await query.registerNatality(objectNatality);
-        try {
-            if (result) {
-                mr = { state: 200, data: [{ info: "Natalidad Registrada", idNatalidad: result }], message: "SUCCES" };
-            } else {
-                mr = {
-                    state: -1,
-                    data: "No se pudo registrar la natalidad del animal",
-                    messag: "ERROR",
-                };
-            }
-            resolve(mr);
-        } catch (error) {
-            reject({ state: -1, message: new String(error) });
-        }
 
 
+module.exports = { 
+    insertPalabraUsuario, 
+    insertUser,
+    actualizaPerfil
 
-    });
-}
-
-function insertInsemination(objectInsemination) {
-    return new Promise(async(resolve, reject) => {
-        console.log("Entro al segunda funcion")
-        var mr;
-        var result = await query.registerInsemination(objectInsemination);
-
-        try {
-            if (result) {
-                mr = { state: 200, data: [{ info: "Natalidad Registrada", idInseminacion: result }], message: "SUCCES" };
-            } else {
-                mr = {
-                    state: -1,
-                    data: "No se pudo registrar la inseminacion del animal",
-                    messag: "ERROR",
-                };
-            }
-            resolve(mr);
-        } catch (error) {
-            reject({ state: -1, message: new String(error) });
-        }
-    });
-}
-
-function insertHealthControl(objectHealth) {
-    return new Promise(async(resolve, reject) => {
-
-        var mr;
-        var result = await query.registerhealthcontrol(objectHealth);
-
-        try {
-            if (result) {
-                mr = { state: 200, data: [{ info: "Control de salud registrado", idControlSalud: result }], message: "SUCCES" };
-            } else {
-                mr = {
-                    state: -1,
-                    data: "No se pudo registrar el control de salud del animal",
-                    messag: "ERROR",
-                };
-            }
-            resolve(mr);
-        } catch (error) {
-            reject({ state: -1, message: new String(error) });
-        }
-    });
-}
-
-
-module.exports = { insertPalabraUsuario, insertUser, insertMilk, insertNatality, insertInsemination, insertHealthControl };
+    };

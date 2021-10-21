@@ -43,11 +43,11 @@ const registroPalabraAprender = (idUser) => {
     })
 }
 
-const registroLogin = (idUser,Contraseña) => {
+const registroLogin = (idUser,contrasena) => {
 
     const sqlRegistroLogin = `select * from xincadb.perfil p 
     inner join xincadb.usuario u on u.IdUsuario = p.IdUsuario 
-    where u.NombreUsuario ='${idUser}' and u.Contraseña='${Contraseña}' `;
+    where u.NombreUsuario ='${idUser}' and u.contrasena='${contrasena}' `;
 
     return new Promise((resolve, reject) => {
         conector.query(sqlRegistroLogin, (erro, resul) => {
@@ -94,57 +94,59 @@ const registroActualizarCategoria = (idCategoria) => {
     })
 }
 
-
-
-
-
-
-
-const searchInformationAnimaNatality = (idUser, idAnimal, limit) => {
-    const sqlSearchNatalityInfo = `select n.* from controlganadero.registroanimal r
-    inner join controlganadero.natalidad n on n.idAnimal = r.idAnimal 
-    where r.idUsuario =${idUser} and r.idAnimal =${idAnimal} 
-    order by n.idNatalidad desc
-    limit ${limit};
-    `;
+const getUsuarios = () => {
+    
+    const sqlBuscarUsuarios= `select * from xincadb.perfil p2 ;`;
 
     return new Promise((resolve, reject) => {
-        conector.query(sqlSearchNatalityInfo, (err, result) => {
-            if (err) reject(err)
-            else resolve(result)
-        })
-    })
-}
-
-const searchInformationAnimalInsemination = (idUser, idAnimal, limit) => {
-    const sqlInformationAnimalInsemination = `select   i.* from controlganadero.registroanimal r
-    inner join controlganadero.inseminacion i on i.idAnimal = r.idAnimal 
-    where r.idUsuario =${idUser} and r.idAnimal =${idAnimal} 
-    order by i.idInseminacion desc
-    limit ${limit};`;
-
-    return new Promise((resolve, reject) => {
-        conector.query(sqlInformationAnimalInsemination, (erro, result) => {
+        conector.query(sqlBuscarUsuarios, (erro, resul) => {
             if (erro) reject(erro)
-            else resolve(result)
-        })
+            else resolve(resul)
+        });
     })
 }
 
-const searchInformationAnimalControlSalud = (idUser, idAnimal, limit) => {
-    const sqlInformationAnimalControlSalud = `select   i.* from controlganadero.registroanimal r
-    inner join controlganadero.inseminacion i on i.idAnimal = r.idAnimal 
-    where r.idUsuario =${idUser} and r.idAnimal =${idAnimal} 
-    order by i.idInseminacion desc
-    limit ${limit};`;
+const registroPalabraAprendidaGrupo = (idUser, idGrupo) => {
+    const sqlRegistroPalabraAprendidaGrupo = `select p.*,g.* from xincadb.palabra p 
+    inner join xincadb.registro r on r.IdPalabra = p.IdPalabra 
+    inner join xincadb.grupopalabra g on g.IdGrupo  = r.IdGrupo 
+    where r.Estado =1 and r.IdPerfil =${idUser} and g.idGrupo=${idGrupo}`;
 
     return new Promise((resolve, reject) => {
-        conector.query(sqlInformationAnimalControlSalud, (err, resul) => {
-            if (err) reject(err)
+        conector.query(sqlRegistroPalabraAprendidaGrupo, (erro, resul) => {
+            if (erro) reject(erro)
             else resolve(resul)
-        })
+        });
     })
 }
+
+const registroPalabrasGrupo = (idGrupo) => {
+    const sqlRegistroPalabrasGrupo = `select * from xincadb.grupopalabra g 
+    inner join xincadb.palabra p on p.IdGrupo = g.IdGrupo
+    where g.idGrupo=${idGrupo}`;
+
+    return new Promise((resolve, reject) => {
+        conector.query(sqlRegistroPalabrasGrupo, (erro, resul) => {
+            if (erro) reject(erro)
+            else resolve(resul)
+        });
+    })
+}
+
+const consultarPerfil = (idPerfil) => {
+    const sqlConsultarPerfil = `select * from xincadb.perfil p 
+    where p.idPerfil=${idPerfil}`;
+
+    return new Promise((resolve, reject) => {
+        conector.query(sqlConsultarPerfil, (erro, resul) => {
+            if (erro) reject(erro)
+            else resolve(resul)
+        });
+    })
+}
+
+
+
 
 
 module.exports = {
@@ -155,7 +157,9 @@ module.exports = {
     registroExperiencia,
     registroCategoria,
     registroActualizarCategoria,
-    searchInformationAnimaNatality,
-    searchInformationAnimalInsemination,
-    searchInformationAnimalControlSalud
+    getUsuarios,
+    registroPalabraAprendidaGrupo,
+    registroPalabrasGrupo,
+    consultarPerfil
+   
 }

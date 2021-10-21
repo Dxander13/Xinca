@@ -67,10 +67,10 @@ function registroPalabraAprender(idUser) {
     })
 }
 
-function registroLogin(idUser, Contraseña) {
+function registroLogin(idUser, contrasena) {
     return new Promise(async(resolve, reject) => {
         var mr;
-        var result = await query.registroLogin(idUser, Contraseña)
+        var result = await query.registroLogin(idUser, contrasena)
         console.log(result.length)
         try {
             if (result.length>0) {
@@ -116,7 +116,7 @@ function registroCategoria(idUser, idCategoria) {
     return new Promise(async(resolve, reject) => {
         var mr;
         var result = await query.registroCategoria(idUser, idCategoria)
-        console.log(result.length)
+    
         try {
             if (result) {
                 mr = { state: 200, data: result.message, message: "SUCCES" };
@@ -157,9 +157,95 @@ function registroActualizarCategoria(idCategoria) {
     })
 }
 
+function getUsuarios(idUser) {
+    return new Promise(async(resolve, reject) => {
+        var mr;
+        var result = await query.getUsuarios()
+        console.log(result.length)
+        try {
+            if (result.length>0) {
+                mr = { state: 200, data: result, message: "SUCCES" };
+            } else {
+                mr = {
+                    state: 204,
+                    data: "No hay usuarios",
+                    messag: "SUCCES",
+                };
+            }
+            resolve(mr);
+        } catch (error) {
+            reject({ state: 500, message: new String(error) });
+        }
+    })
+}
 
 
+function registroPalabraAprendidaGrupo(idUser, idGrupo) {
+    return new Promise(async(resolve, reject) => {
+        var mr;
+        var result = await query.registroPalabraAprendidaGrupo(idUser, idGrupo)
+        console.log(result.length)
+        try {
+            if (result.length>0) {
+                mr = { state: 200, data: result, message: "SUCCES" };
+            } else {
+                mr = {
+                    state: 204,
+                    data: "No hay palabras aprendidas en este grupo",
+                    messag: "SUCCES",
+                };
+            }
+            resolve(mr);
+        } catch (error) {
+            reject({ state: 500, message: new String(error) });
+        }
+    })
+}
 
+
+function registroPalabrasGrupo(idGrupo) {
+    return new Promise(async(resolve, reject) => {
+        var mr;
+        var result = await query.registroPalabrasGrupo(idGrupo)
+        console.log(result.length)
+        try {
+            if (result.length>0) {
+                mr = { state: 200, data: result, message: "SUCCES" };
+            } else {
+                mr = {
+                    state: 204,
+                    data: "No hay palabras en este grupo",
+                    messag: "SUCCES",
+                };
+            }
+            resolve(mr);
+        } catch (error) {
+            reject({ state: 500, message: new String(error) });
+        }
+    })
+}
+
+function consultarPerfil(idPerfil) {
+    return new Promise(async(resolve, reject) => {
+        var mr;
+        var result = await query.consultarPerfil(idPerfil)
+        console.log(result.length)
+        try {
+            if (result.length>0) {
+                mr = { state: 200, data: result, message: "SUCCES" };
+            } else {
+                mr = {
+                    state: 204,
+                    data: "No hay perfil",
+                    messag: "SUCCES",
+                };
+            }
+            resolve(mr);
+        } catch (error) {
+            reject({ state: 500, message: new String(error) });
+        }
+    })
+}
 
 module.exports = { 
     registroPalabra,
@@ -168,5 +254,9 @@ module.exports = {
     registroLogin,
     registroExperiencia,
     registroCategoria,
-    registroActualizarCategoria
+    registroActualizarCategoria,
+    registroPalabraAprendidaGrupo,
+    getUsuarios, 
+    registroPalabrasGrupo,
+    consultarPerfil
 }

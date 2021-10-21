@@ -1,0 +1,38 @@
+<app-header></app-header>
+<app-footer></app-footer>
+
+<div class="contenedor-leccion">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="card" style="width: 20rem;">
+                <img src="assets/img/escritura.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Evaluemos lo aprendido </p>                
+                </div>
+            </div>
+            <button class="btn-respuesta" *ngIf="!aparecer" (click)="mostrarTraduccion()" (click)="apareceBtn()" > Evaluar </button>    
+          </div><br><br>
+          <div class="carousel-item" *ngFor="let palabra of palabras">
+            <div class="card" style="width: 20rem;">
+                <img [src]="img(palabra.imagen)" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{palabra.NombrePalabra}}</p>
+                </div><br>
+                <div class="evaluar">
+                    <input type="text" #traduccion>                
+                </div><br>
+            </div>
+                <button class="btn-respuesta" *ngIf="!aparecer"  (click)="apareceBtn();evaluarPalabra(traduccion.value,palabra.Traduccion,palabra.IdPalabra,palabra.IdGrupo)" > Evaluar </button>    
+            </div>       
+
+        </div>  
+       
+    </div>
+    <div class="ctn-botones">     
+      <button *ngIf="aparecer" class="btn-siguiente" (click)="siguiente()" data-bs-target="#carouselExampleFade" data-bs-slide="next" > O K </button>
+      
+    </div>
+ 
+
+</div>

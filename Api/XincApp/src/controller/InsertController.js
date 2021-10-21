@@ -24,16 +24,21 @@ routes.post('/usuario', (req, res) => {
     })
 })
 
-routes.post('/milkProduction', (req, res) => {
-    let milk = req.body;
-    console.log(milk)
-    insertData.insertMilk(milk).then(result => {
+routes.put('/editarPerfil', (req, res) => {
+    let perfil = req.body;
+
+    console.log('Informacion del perfil',perfil)
+    insertData.actualizaPerfil(perfil).then(result => {
         res.json(result)
     }).catch(error => {
         console.log(error);
         res.json(error)
     })
 })
+
+
+
+
 
 routes.post('/natality', (req, res) => {
     let natality = req.body;
@@ -67,5 +72,7 @@ routes.post('/healthControl', (req, res) => {
         res.json(error)
     })
 })
+
+
 
 module.exports = routes
